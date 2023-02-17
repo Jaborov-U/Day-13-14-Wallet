@@ -7,13 +7,13 @@ type Money int64
 type Currency string
 
 // Status представляет собой статус платежа.
-type Status string
+type PaymentStatus string
 
 // Предопределенные статус платежей
 const (
-	StatusOk Status = "OK"
-	StatusFail Status = "FAIL"
-	StatusInProgress Status = "INPROGRESS"
+	StatusOk PaymentStatus = "OK"
+	StatusFail PaymentStatus = "FAIL"
+	StatusInProgress PaymentStatus = "INPROGRESS"
 )
 
 // Коды валют.
@@ -28,7 +28,7 @@ const (
 type PAN string
 
 // Category представляет собой категорию, в которой был совершен платеж ("авто", "интернет" и т.д.).
-type Category string
+type PaymentCategory string
 
 // Card = информация о платежной карте.
 type Card struct{
@@ -44,11 +44,14 @@ type Card struct{
 
 // Payment пресдавляет информацию о платеже.
 type Payment struct {
-	ID int
+	ID string
+	AccountID int64
 	Amount Money
-	Category Category
-	Status Status
+	Category PaymentCategory
+	Status PaymentStatus
 }
+
+type Phone string
 
 // Слайс из карт для ДЗ 9.
 type PaymentSourse struct{
@@ -57,3 +60,8 @@ type PaymentSourse struct{
 	Balance Money // баланс в дирамах
 }
 
+type Account struct{
+	ID int64
+	Phone Phone
+	Balance Money
+}
